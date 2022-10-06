@@ -11,26 +11,23 @@ using namespace std;
 class Note{
 public:
     Note(string title="Nota", string content="");
-    ~Note();
 
-    // Getter e Setter
+    void setTitle(string title);
+    string getTitle();
 
-    void setTitle(string title);            //Per aggiungere/modificare il titolo
-    string getTitle();                      //Per ottenere il titolo
+    void setContent(string content );
+    string getContent();
 
-    void setContent(string content );       //Per aggiungere/modificare il contenuto
-    string getContent();                    //Per ottenere il contenuto
-
-    void setSpecial();                      //Per rendere la nota speciale
+    void setSpecial();
     void setNotSpecial();
-    bool isSpecial();                       //Per verificare se la nota è speciale
+    bool isSpecial();                       //verifica se la nota è speciale
 
-    void block();                           //Per bloccare la nota
+    void block();
     void unlock();
-    bool isBlocked();                       //Per verificare se la nota è bloccata
+    bool isBlocked();                       //verifica se la nota è bloccata
 
 
-    void print();                           //Per stampare la nota
+    void print();
 
 private:
     string title;

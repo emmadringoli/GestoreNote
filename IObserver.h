@@ -1,5 +1,5 @@
 //
-// Created by Dringoli Ghezzi on 13/09/22.
+// Created by Emma Dringoli on 13/09/22.
 //
 
 #ifndef GESTORE_NOTE_IOBSERVER_H

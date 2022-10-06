@@ -1,5 +1,5 @@
 //
-// Created by Dringoli Ghezzi on 29/09/22.
+// Created by Emma Dringoli on 29/09/22.
 //
 #include "gtest/gtest.h"
 #include "../Note.h"

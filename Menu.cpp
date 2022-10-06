@@ -1,8 +1,9 @@
 //
-// Created by Dringoli Ghezzi on 13/09/22.
+// Created by Emma Dringoli on 13/09/22.
 //
 #include <iostream>
 #include <string>
+#include <utility>
 #include "Menu.h"
 #include "Collection.h"
 
@@ -55,16 +56,16 @@ int Menu::getNumFavNote(){
 }
 
 void Menu::showFavorite(){
-    cout<<"Favorite Notes: \n\n";
+    cout<<"Favorite Notes:\n\n";
     fav.show();
     cout<<"END Favorite Notes\n";
 }
 
 void Menu::editNote(Note* nt, string name, string text){
     if(!nt->isBlocked()){
-        nt->setTitle(name);
-        nt->setContent(text);
-    }else{cout<<"The note is blocked!\n";}
+        nt->setTitle(std::move(name));
+        nt->setContent(std::move(text));
+    }else{cout<<"\nThe note is blocked!\n";}
 }
 
 void Menu::lockNote(Note* nt){

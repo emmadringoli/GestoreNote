@@ -1,5 +1,5 @@
 //
-// Created by Dringoli Ghezzi on 13/09/22.
+// Created by Emma Dringoli on 13/09/22.
 //
 
 #ifndef GESTORE_NOTE_C_OBSERVER_H
@@ -12,14 +12,8 @@
 
 using namespace std;
 
-
-
-
-
 class C_Observer: public IObserver{
-
 public:
-
     void update(Collection*) override;
     void attach(Collection*) override;
     void detach(Collection*) override;
@@ -28,8 +22,6 @@ public:
 private:
     map<string,int> info;
 };
-
-
 
 
 

@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string>
-#include <list>
 #include "Note.h"
 #include "Collection.h"
 #include "Menu.h"
@@ -10,38 +8,36 @@ using namespace std;
 
 int main(){
     Menu menu;
-  /*  C_Observer firstObserver;
     Collection film;
-    film.addObserver(&firstObserver);
-    Note avatar("Avatar","Anno:2009\nGenere:fantascienza");
-    Note forrest("Forrest Gump","Anno:1994\nGenere:drammatico/commedia");
+    Note avatar("Avatar","Year: 2009\nGenre: sci-fi");
+    Note forrest("Forrest Gump","Year: 1994\nGenre: drama,comedy");
     film.addNote(&avatar);
     film.addNote(&forrest);
+    cout<<"\nCollection 'film':\n";
     film.show();
-    cout<<film.getSize()<<"\n\n";
-    film.notify();
+    cout<<"The collection 'film' has "<<film.getSize()<<" elements\n\n";
 
-    Collection canzoni;
-    Note penny("Penny Lane","Anno:1967\nArtista:The Beatles");
-    Note love("Love Of My Life","Anno:1975\nArtista:Queen");
-    canzoni.addNote(&penny);
-    canzoni.addNote(&love);
+
+    Collection songs;
+    Note penny("Penny Lane","Year: 1967\nArtist: The Beatles");
+    Note love("Love Of My Life","Year: 1975\nArtist: Queen");
+    songs.addNote(&penny);
+    songs.addNote(&love);
     menu.addNoteToFav(&penny);
     menu.addNoteToFav(&forrest);
-    film.removeNote(&forrest);
     menu.showFavorite();
-    film.notify();   */
 
-    Collection collezione1;
-    menu.addCollection(&collezione1);
-    cout<<"Menu:  "<<menu.getNumOfColl()<<"\n";
-    cout<<"Viewer:  "<<menu.viewer.getNumOfColl()<<"\n";
+    menu.lockNote(&avatar);
+    menu.editNote(&avatar,"new_title","new_content");   //la nota non verrà modificata
+    cout<<"\n";
+    avatar.print();
+    menu.unlockNote(&avatar);
+    menu.editNote(&avatar,"new_title","new content");   //la nota verrà modificata
+    cout<<"\n";
+    avatar.print();
 
-
-
-
-
-
+    menu.removeNoteFromFav(&penny);
+    menu.showFavorite();
 
 
     return 0;
