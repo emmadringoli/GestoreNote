@@ -10,17 +10,17 @@ using namespace std;
 
 class Note{
 public:
-    Note(string title="Nota", string content="");
+    explicit Note(string title="Nota", string content="");
 
-    void setTitle(string title);
-    string getTitle();
+    void setTitle( const string& title);
+    string getTitle() const;
 
-    void setContent(string content );
-    string getContent();
+    void setContent(const string& content );
+    string getContent() const;
 
     void setSpecial();
     void setNotSpecial();
-    bool isSpecial();                       //verifica se la nota è speciale
+    bool isSpecial() const;                       //verifica se la nota è speciale
 
     void block();
     void unlock();

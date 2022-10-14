@@ -17,26 +17,28 @@ using namespace std;
 
 class Collection: ISubject{
 public:
-    Collection(string name="Collection");
+     explicit Collection(string name="Collection");
+     ~Collection();
 
     //metodi ISubject
     void addObserver(IObserver*) override;
     void removeObserver(IObserver*) override;
     void notify() override;
 
-    void addNote(Note* note);
-    void removeNote(Note* note);
+
+    void addNote(shared_ptr<Note> note);
+    bool removeNote(shared_ptr<Note> note);
 
     string getName();
-    void setName(string new_name);
+    void setName(const string& new_name);
 
-    int getSize();
+    int getSize() const;
 
     void show();
 
 private:
     string name;
-    list<Note*> notes;
+    list<shared_ptr<Note>> notes;
     list<IObserver*> observers;
 };
 

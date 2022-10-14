@@ -9,26 +9,27 @@
 using namespace std;
 
 Note::Note(string title, string content){
-    this->title=title;
-    this->content=content;
+    this->title=std::move(title);
+    this->content=std::move(content);
 }
 
-void Note::setTitle(string new_title){
-    if(!blocked){
-    title=std::move(new_title);
-    }else{
-        cout<<"The note is blocked\n";
+void Note::setTitle(const string& new_title){
+    if (isBlocked()) {
+        cout << "The note is blocked\n";
+    } else {
+        title = new_title;
     }
 }
 
-string Note::getTitle() {return title;};
-void Note::setContent(string new_content){
+string Note::getTitle() const {return title;}
+
+void Note::setContent(const string& new_content){
     if (!blocked) {
-        content = std::move(new_content);
+        content = new_content;
     } else { cout << "The note is blocked!\n"; }
 }
 
-string Note::getContent(){return content;};
+string Note::getContent() const {return content;};
 
 void Note::setSpecial(){
     special=true;
@@ -38,15 +39,12 @@ void Note::setNotSpecial() {
     special=false;
 }
 
-bool Note::isSpecial(){
-    if(special){
-        cout<<"IS SPECIAL BABY!\n";
-    }else{ cout<<"Sorry, not special\n";}
+bool Note::isSpecial() const{
+    return special;
 }
 
 void Note::block() {
-    blocked=true;
-    //cout<<"Now the note is blocked!\n";
+    this->blocked=true;
 }
 
 void Note::unlock() {
@@ -54,15 +52,9 @@ void Note::unlock() {
 }
 
 bool Note::isBlocked(){
-    if(!blocked){
-        //cout<<"The note is NOT blocked!\n";
-        return false;
-    }else {
-        //cout<<"The note is blocked!\n";
-        return true;
-    }
-
+    return blocked;
 }
+
 
 void Note::print(){
     cout<<"-- "<<title<<" --\n";

@@ -6,10 +6,21 @@
 #include "Collection.h"
 #include "IObserver.h"
 
+
 using namespace std;
 
 Collection::Collection(string name) {
     this->name=std::move(name);
+}
+
+Collection::~Collection(){
+    for(auto n :notes){
+        n.reset();
+    }
+    for(auto o :observers){
+        o->detach(this);
+    }
+
 }
 
 void Collection::addObserver(IObserver* obs){
@@ -26,25 +37,29 @@ void Collection::notify(){
     }
 }
 
-void Collection::addNote(Note *note) {
-    notes.push_back(note);
+void Collection::addNote(shared_ptr<Note> note) {
+    notes.push_front(note);
     this->notify();
 }
 
-void Collection::removeNote(Note *note) {
+bool Collection::removeNote(shared_ptr<Note> note) {
+    if(note->isBlocked()){
+        return false;
+    }
     notes.remove(note);
     this->notify();
+    return true;
 }
 
 string Collection::getName() {
     return this->name;
 }
 
-void Collection::setName(string new_name) {
-    this->name=std::move(new_name);
+void Collection::setName(const string& new_name) {
+    this->name=new_name;
 }
 
-int Collection::getSize() {
+int Collection::getSize() const {
     int count=0;
     for (auto note:notes){
         count++;

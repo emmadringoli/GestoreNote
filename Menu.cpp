@@ -12,6 +12,13 @@ using namespace std;
 Menu::Menu() {
     fav.addObserver(&viewer);
     addCollection(&fav);
+    fav.notify();
+}
+
+Menu::~Menu(){
+   for(auto itr :collections){
+       delete itr;
+   }
 }
 
 void Menu::addCollection(Collection* col){
@@ -22,7 +29,7 @@ void Menu::addCollection(Collection* col){
 
 void Menu::removeCollection(Collection* col){
     for(int i=0; i<collections.size(); i++){
-        if(collections[i]->getName()==col->getName()){ //OR if(collection[i]==col)   CHECK!!!
+        if(collections[i]->getName()==col->getName()){
             collections.erase(collections.begin()+i);
         }
     }
@@ -41,14 +48,14 @@ int Menu::getNumOfColl(){
     return collections.size();
 }
 
-void Menu::addNoteToFav(Note* nt){
-    fav.addNote(nt);
-    nt->setSpecial();
-}
-
-void Menu::removeNoteFromFav(Note* nt){
+void Menu::removeNoteFromFav(shared_ptr<Note> nt){
     fav.removeNote(nt);
     nt->setNotSpecial();
+}
+
+void Menu::addNoteToFav(shared_ptr<Note> nt){
+    fav.addNote(nt);
+    nt->setSpecial();
 }
 
 int Menu::getNumFavNote(){
@@ -61,26 +68,26 @@ void Menu::showFavorite(){
     cout<<"END Favorite Notes\n";
 }
 
-void Menu::editNote(Note* nt, string name, string text){
+void Menu::editNote(shared_ptr<Note> nt, string name, string text){
     if(!nt->isBlocked()){
         nt->setTitle(std::move(name));
         nt->setContent(std::move(text));
     }else{cout<<"\nThe note is blocked!\n";}
 }
 
-void Menu::lockNote(Note* nt){
+void Menu::lockNote(shared_ptr<Note> nt){
     nt->block();
 }
 
-void Menu::unlockNote(Note* nt){
+void Menu::unlockNote(shared_ptr<Note> nt){
     nt->unlock();
 }
 
-void Menu::addNoteToColl(Note* nt, Collection* col){
+void Menu::addNoteToColl(shared_ptr<Note> nt, Collection* col){
     col->addNote(nt);
 }
 
-void Menu::removeNoteFromColl(Note* nt, Collection* col){
+void Menu::removeNoteFromColl(shared_ptr<Note> nt, Collection* col){
     col->removeNote(nt);
 }
 

@@ -16,7 +16,7 @@ public:
     C_Observer viewer;
 
     Menu();
-    ~Menu(){};
+    ~Menu();
 
     //operazioni sulle collezioni
      void addCollection(Collection* col);
@@ -25,17 +25,17 @@ public:
      int getNumOfColl();
 
      //operazioni sulla collezione "favorites"
-     void removeNoteFromFav(Note*);
-     void addNoteToFav(Note*);
+     void removeNoteFromFav(shared_ptr<Note>);
+     void addNoteToFav(shared_ptr<Note>);
      int getNumFavNote();
      void showFavorite();
 
      //operazioni sulle note
-     void editNote(Note* nt, string name, string text);
-     void lockNote(Note* nt);
-     void unlockNote(Note* nt);
-     void addNoteToColl(Note* nt, Collection* col);
-     void removeNoteFromColl(Note* nt, Collection* col);
+     void editNote(shared_ptr<Note> nt, string name, string text);
+     void lockNote(shared_ptr<Note> nt);
+     void unlockNote(shared_ptr<Note> nt);
+     void addNoteToColl(shared_ptr<Note> nt, Collection* col);
+     void removeNoteFromColl(shared_ptr<Note> nt, Collection* col);
      int getNumOfNote();
      void showCollectionNote(Collection* col);
 

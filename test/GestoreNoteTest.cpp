@@ -32,10 +32,5 @@ TEST(Collection, Constructor){
     ASSERT_EQ("Collection", c.getName());
 }
 
-TEST(Menu,Constructor){
-    Menu m;
-    ASSERT_EQ(0,m.getNumOfColl());
-    ASSERT_EQ(0,m.getNumOfNote());
-    ASSERT_EQ(0,m.getNumFavNote());
-}
+
 

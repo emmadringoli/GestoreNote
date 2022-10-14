@@ -4,28 +4,35 @@
 #include <iostream>
 #include "C_Observer.h"
 
-void C_Observer::update(Collection* col) {
+void C_Observer::update(Collection *col) {
     bool exist=false;
     map<string,int>::iterator itr;
     for(itr = info.begin(); itr != info.end(); ++itr){
         if(itr->first==col->getName()){
             itr->second=col->getSize();
             exist=true;
-            //cout<<"Collection:  UPDATED\n";
         }
     }
     if(!exist){
         info.insert(pair<string,int>(col->getName(),col->getSize()));
-        //cout<<"Collection: ADDED\n";
     }
 }
 
+
 void C_Observer::attach(Collection* col) {
     col->addObserver(this);
+    update(col);
 }
 
 void C_Observer::detach(Collection * col) {
+    map<string,int>::iterator itr;
+    for(itr = info.begin(); itr != info.end(); ++itr){
+        if(itr->first==col->getName()){
+            info.erase(itr);
+        }
+    }
     col->removeObserver(this);
+
 }
 
 int C_Observer::getNumOfColl() {
