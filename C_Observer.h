@@ -4,6 +4,7 @@
 
 #ifndef GESTORE_NOTE_C_OBSERVER_H
 #define GESTORE_NOTE_C_OBSERVER_H
+
 #include <iostream>
 #include <string>
 #include <list>
@@ -12,17 +13,19 @@
 
 using namespace std;
 
-class C_Observer: public IObserver{
+class C_Observer : public IObserver {
 public:
-    void update(Collection*) override;
-    void attach(Collection*) override;
-    void detach(Collection*) override;
-    int getNumOfColl();
+    void update(Collection *) override;
+
+    void attach(Collection *) override;
+
+    void detach(Collection *) override;
+
+    int getNumOfColl() const;
 
 private:
-    map<string,int> info;
+    map<string, int> info;
 };
-
 
 
 #endif //GESTORE_NOTE_C_OBSERVER_H

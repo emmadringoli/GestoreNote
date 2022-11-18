@@ -5,29 +5,29 @@
 #include "C_Observer.h"
 
 void C_Observer::update(Collection *col) {
-    bool exist=false;
-    map<string,int>::iterator itr;
-    for(itr = info.begin(); itr != info.end(); ++itr){
-        if(itr->first==col->getName()){
-            itr->second=col->getSize();
-            exist=true;
+    bool exist = false;
+    map<string, int>::iterator itr;
+    for (itr = info.begin(); itr != info.end(); ++itr) {
+        if (itr->first == col->getName()) {
+            itr->second = col->getSize();
+            exist = true;
         }
     }
-    if(!exist){
-        info.insert(pair<string,int>(col->getName(),col->getSize()));
+    if (!exist) {
+        info.insert(pair<string, int>(col->getName(), col->getSize()));
     }
 }
 
 
-void C_Observer::attach(Collection* col) {
+void C_Observer::attach(Collection *col) {
     col->addObserver(this);
     update(col);
 }
 
-void C_Observer::detach(Collection * col) {
-    map<string,int>::iterator itr;
-    for(itr = info.begin(); itr != info.end(); ++itr){
-        if(itr->first==col->getName()){
+void C_Observer::detach(Collection *col) {
+    map<string, int>::iterator itr;
+    for (itr = info.begin(); itr != info.end(); ++itr) {
+        if (itr->first == col->getName()) {
             info.erase(itr);
         }
     }
@@ -35,7 +35,7 @@ void C_Observer::detach(Collection * col) {
 
 }
 
-int C_Observer::getNumOfColl() {
+int C_Observer::getNumOfColl() const {
     return info.size();
 }
 

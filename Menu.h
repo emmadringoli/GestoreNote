@@ -4,6 +4,7 @@
 
 #ifndef GESTORE_NOTE_MENU_H
 #define GESTORE_NOTE_MENU_H
+
 #include <iostream>
 #include <vector>
 #include "Collection.h"
@@ -11,41 +12,52 @@
 
 using namespace std;
 
-class Menu{
+class Menu {
 public:
     C_Observer viewer;
 
     Menu();
+
     ~Menu();
 
     //operazioni sulle collezioni
-     void addCollection(Collection* col);
-     void removeCollection(Collection*);
-     void showListOfCollection();
-     int getNumOfColl();
+    void addCollection(Collection *col);
 
-     //operazioni sulla collezione "favorites"
-     void removeNoteFromFav(shared_ptr<Note>);
-     void addNoteToFav(shared_ptr<Note>);
-     int getNumFavNote();
-     void showFavorite();
+    void removeCollection(Collection *col);
 
-     //operazioni sulle note
-     void editNote(shared_ptr<Note> nt, string name, string text);
-     void lockNote(shared_ptr<Note> nt);
-     void unlockNote(shared_ptr<Note> nt);
-     void addNoteToColl(shared_ptr<Note> nt, Collection* col);
-     void removeNoteFromColl(shared_ptr<Note> nt, Collection* col);
-     int getNumOfNote();
-     void showCollectionNote(Collection* col);
+    void showListOfCollection();
+
+    int getNumOfColl() const ;
+
+    //operazioni sulla collezione "favorites"
+    void removeNoteFromFav(shared_ptr<Note>);
+
+    void addNoteToFav(shared_ptr<Note>);
+
+    int getNumFavNote() const ;
+
+    void showFavorite();
+
+    //operazioni sulle note
+    void editNote(shared_ptr<Note> nt, const string& name, const string& text);
+
+    void lockNote(shared_ptr<Note> nt);
+
+    void unlockNote(shared_ptr<Note> nt);
+
+    void addNoteToColl(shared_ptr<Note> nt, Collection *col);
+
+    void removeNoteFromColl(shared_ptr<Note> nt, Collection *col);
+
+    int getNumOfNote() const;
+
+    void showCollectionNote(Collection *col);
 
 private:
-    int nNotes=0;
-    vector<Collection*> collections;
-    Collection fav=Collection("favorites");
-
+    int nNotes = 0;
+    vector<Collection *> collections;
+    Collection fav = Collection("favorites");
 };
-
 
 
 #endif //GESTORE_NOTE_MENU_H
