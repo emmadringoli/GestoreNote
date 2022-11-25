@@ -31,13 +31,18 @@ public:
 
     bool removeNote(shared_ptr<Note> note);
 
+    bool searchNote(shared_ptr<Note> nt);
+
     string getName() const;
 
     void setName(const string &new_name);
 
     int getSize() const;
 
+    int getFavSize() const;
+
     void show();
+
 
 private:
     string name;

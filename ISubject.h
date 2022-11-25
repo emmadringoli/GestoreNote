@@ -16,6 +16,8 @@ class Collection;
 
 class ISubject {
 public:
+    virtual ~ISubject() {};
+
     virtual void addObserver(IObserver *) = 0;
 
     virtual void removeObserver(IObserver *) = 0;

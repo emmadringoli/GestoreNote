@@ -13,6 +13,8 @@ class Collection;
 
 class IObserver {
 public:
+    virtual ~IObserver() {};
+
     virtual void update(Collection *) = 0;
 
     virtual void attach(Collection *) = 0;

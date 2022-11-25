@@ -89,3 +89,17 @@ TEST_F(GestoreNoteSuite, EditNote) {
     ASSERT_EQ("New title", note2->getTitle());
     ASSERT_EQ("New content", note2->getContent());
 }
+
+TEST_F(GestoreNoteSuite, RemoveNote) {
+    menu->addCollection(col);
+    col->addNote(note1);
+    ASSERT_EQ(col->removeNote(note1), true);
+    ASSERT_EQ(col->removeNote(note2), false);
+}
+
+TEST_F(GestoreNoteSuite, SearchNote) {
+    menu->addCollection(col);
+    ASSERT_EQ(col->searchNote(note2), false);
+    col->addNote(note1);
+    ASSERT_EQ(col->searchNote(note1), true);
+}

@@ -11,6 +11,7 @@ void C_Observer::update(Collection *col) {
         if (itr->first == col->getName()) {
             itr->second = col->getSize();
             exist = true;
+            //cout<<"Update: The collection ' "<<col->getName()<<" ' has "<<col->getSize()<<" now!\n";
         }
     }
     if (!exist) {

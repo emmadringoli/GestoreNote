@@ -45,9 +45,15 @@ bool Collection::removeNote(shared_ptr<Note> note) {
     if (note->isBlocked()) {
         return false;
     }
-    notes.remove(note);
-    this->notify();
-    return true;
+    if (searchNote(note)) {
+        notes.remove(note);
+        this->notify();
+        return true;
+    } else {
+        cout << "The note can't be removed because is not present!\n";
+        return false;
+    }
+
 }
 
 string Collection::getName() const {
@@ -70,4 +76,26 @@ void Collection::show() {
     for (auto note:notes) {
         note->print();
     }
+}
+
+int Collection::getFavSize() const {
+    int count = 0;
+    for (auto note:notes) {
+        if (note->isSpecial()) {
+            count++;
+        }
+    }
+    cout << "The collection has: " << count << " favorite notes\n";
+    return count;
+}
+
+bool Collection::searchNote(shared_ptr<Note> nt) {
+    for (auto note:notes) {
+        if (note->getTitle() == nt->getTitle()) {
+            cout << "The note is present in the collection\n";
+            return true;
+        }
+    }
+    cout << "The note is not present in the collection\n";
+    return false;
 }
